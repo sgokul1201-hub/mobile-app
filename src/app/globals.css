@@ -83,3 +83,35 @@ body {
   background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(99, 102, 241, 0) 70%);
 }
 
+/* Base theme styles for text, date, select, and textarea inputs */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  background-color: var(--card-bg);
+  color: var(--foreground);
+  border: 1px solid var(--card-border);
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Ensure dropdown options adapt explicitly to light/dark themes */
+select option {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Invert date/time picker picker icon in dark mode for high visibility */
+::-webkit-calendar-picker-indicator {
+  filter: invert(0);
+  cursor: pointer;
+}
+.dark ::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+
