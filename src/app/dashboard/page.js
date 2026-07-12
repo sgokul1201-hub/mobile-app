@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { 
-  Zap, Calendar, ShieldCheck, Flame, ChevronRight, Plus, 
-  CheckCircle, PlayCircle, Award, Compass, Dumbbell, BookOpen, 
+import { motion } from 'framer-motion';
+import {
+  Zap, Calendar, ShieldCheck, Flame, ChevronRight, Plus,
+  CheckCircle, PlayCircle, Award, Compass, Dumbbell, BookOpen,
   Wind, Droplet, ShieldAlert, Navigation
 } from 'lucide-react';
 import Header from '@/components/Header';
@@ -21,6 +22,17 @@ export default function Dashboard() {
   const [isLogOpen, setIsLogOpen] = useState(false);
   const [commandFeedback, setCommandFeedback] = useState('');
   const router = useRouter();
+
+  const loadDashboardData = () => {
+    const userLogs = storage.getLogs();
+    setLogs(userLogs);
+
+    const monthlyAdvice = getMonthlyAdvice(userLogs);
+    setAdvice(monthlyAdvice);
+
+    const calculatedStreaks = calculateStreaks(userLogs);
+    setStreaks(calculatedStreaks);
+  };
 
   useEffect(() => {
     // Authenticate client-side
@@ -41,17 +53,6 @@ export default function Dashboard() {
     // Load data
     loadDashboardData();
   }, [router]);
-
-  const loadDashboardData = () => {
-    const userLogs = storage.getLogs();
-    setLogs(userLogs);
-    
-    const monthlyAdvice = getMonthlyAdvice(userLogs);
-    setAdvice(monthlyAdvice);
-
-    const calculatedStreaks = calculateStreaks(userLogs);
-    setStreaks(calculatedStreaks);
-  };
 
   const handleSaveLog = (logEntry) => {
     storage.addLog(logEntry);
@@ -96,7 +97,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background pb-24 text-foreground flex flex-col">
       <Header title="Dashboard" />
- 
+
       <main className="flex-1 px-4 py-6 max-w-lg mx-auto w-full space-y-6">
         {/* User Greeting */}
         <div>
@@ -107,14 +108,19 @@ export default function Dashboard() {
             Your offline personal wellness profile is synchronized.
           </p>
         </div>
- 
+
         {/* Streak and Summary metrics */}
         <div className="grid grid-cols-2 gap-4">
           {/* Clean Streak Card */}
           <div className="relative overflow-hidden rounded-2xl glass-panel border border-card-border bg-card-bg p-5 flex flex-col justify-between h-32">
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Clean Streak</span>
-              <Flame className="h-5 w-5 text-indigo-500 fill-indigo-500/20" />
+              <motion.div
+                animate={{ scale: [1, 1.15, 1], y: [0, -2, 0] }}
+                transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+              >
+                <Flame className="h-5 w-5 text-indigo-500 fill-indigo-500/20" />
+              </motion.div>
             </div>
             <div>
               <div className="text-3xl font-extrabold text-foreground">
@@ -125,12 +131,17 @@ export default function Dashboard() {
             {/* Absolute background accent */}
             <div className="absolute -bottom-8 -right-8 h-20 w-20 rounded-full bg-indigo-500/5 blur-xl" />
           </div>
- 
+
           {/* Month Scale status */}
           <div className={`relative overflow-hidden rounded-2xl glass-panel border ${activeStyle.border} ${activeStyle.bg} p-5 flex flex-col justify-between h-32 shadow-lg ${activeStyle.glow}`}>
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Monthly Scale</span>
-              <Zap className={`h-5 w-5 ${activeStyle.text}`} />
+              <motion.div
+                animate={{ scale: [1, 1.15, 1], rotate: [0, 5, -5, 0] }}
+                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+              >
+                <Zap className={`h-5 w-5 ${activeStyle.text}`} />
+              </motion.div>
             </div>
             <div>
               <div className={`text-2xl font-black uppercase tracking-tight ${activeStyle.text}`}>
@@ -140,7 +151,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
- 
+
         {/* Command Feedback Toast */}
         {commandFeedback && (
           <div className="rounded-xl bg-indigo-600 border border-indigo-500/30 p-4 text-xs font-bold text-white flex items-center gap-2 animate-bounce">
@@ -148,11 +159,26 @@ export default function Dashboard() {
             <span>{commandFeedback}</span>
           </div>
         )}
- 
+
         {/* Predefined Dynamic Wellness Advice Card */}
-        <section className="rounded-2xl border border-card-border bg-card-bg p-6 space-y-4">
+        <motion.section 
+          animate={{
+            boxShadow: [
+              "0 4px 6px -1px rgba(99, 102, 241, 0.02), 0 2px 4px -1px rgba(99, 102, 241, 0.01)",
+              "0 10px 15px -3px rgba(99, 102, 241, 0.08), 0 4px 6px -2px rgba(99, 102, 241, 0.02)",
+              "0 4px 6px -1px rgba(99, 102, 241, 0.02), 0 2px 4px -1px rgba(99, 102, 241, 0.01)"
+            ]
+          }}
+          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+          className="rounded-2xl border border-card-border bg-card-bg p-6 space-y-4"
+        >
           <div className="flex items-center gap-2">
-            <Award className="h-5 w-5 text-indigo-500 dark:text-indigo-400" />
+            <motion.div
+              animate={{ scale: [1, 1.05, 1], y: [0, -2, 0], rotate: [0, -10, 10, 0], opacity: [0.8, 1, 0.8] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+            >
+              <Award className="h-5 w-5 text-indigo-500 dark:text-indigo-400" />
+            </motion.div>
             <h3 className="font-bold text-foreground tracking-tight">Personalized Advice</h3>
           </div>
           
@@ -160,20 +186,20 @@ export default function Dashboard() {
             <h4 className="text-sm font-bold text-indigo-600 dark:text-indigo-400">
               {advice.title}
             </h4>
-            <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
+            <p className="text-xs text-foreground/80 leading-relaxed font-medium">
               {advice.scoreDescription}
             </p>
           </div>
  
           <ul className="space-y-2.5 pt-2">
             {advice.bulletAdvice.map((item, idx) => (
-              <li key={idx} className="flex items-start gap-2.5 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed font-semibold">
+              <li key={idx} className="flex items-start gap-2.5 text-xs text-foreground leading-relaxed font-semibold">
                 <span className="h-1.5 w-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
                 <span>{item}</span>
               </li>
             ))}
           </ul>
-        </section>
+        </motion.section>
  
         {/* Predefined Action Redirect commands */}
         <section className="space-y-3">
@@ -188,25 +214,38 @@ export default function Dashboard() {
  
           <div className="grid grid-cols-1 gap-2.5">
             {advice.commands.map((cmd, idx) => (
-              <button
+              <motion.button
                 key={idx}
+                animate={{
+                  boxShadow: [
+                    "0 1px 2px 0 rgba(0,0,0,0.02)",
+                    "0 4px 12px 0 rgba(99,102,241,0.08)",
+                    "0 1px 2px 0 rgba(0,0,0,0.02)"
+                  ]
+                }}
+                transition={{ repeat: Infinity, duration: 2.5 + idx * 0.25, ease: "easeInOut" }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => router.push(`/redirection?cmd=${cmd.icon}`)}
-                className="flex items-center justify-between w-full p-4 rounded-xl border border-card-border bg-card-bg/30 hover:bg-card-bg hover:border-indigo-500/30 active:scale-[0.99] transition-all text-left"
+                className="flex items-center justify-between w-full p-4 rounded-xl border border-card-border bg-card-bg/30 hover:bg-card-bg hover:border-indigo-500/30 active:scale-[0.99] transition-all text-left cursor-pointer"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                  <motion.div 
+                    animate={{ y: [0, -1.5, 0], rotate: [0, 4, -4, 0], opacity: [0.85, 1, 0.85] }}
+                    transition={{ repeat: Infinity, duration: 3 + idx * 0.25, ease: "easeInOut" }}
+                    className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20"
+                  >
                     {getIcon(cmd.icon)}
-                  </div>
-                  <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">
+                  </motion.div>
+                  <span className="text-xs font-bold text-foreground">
                     {cmd.text}
                   </span>
                 </div>
                 <ChevronRight className="h-4 w-4 text-zinc-500" />
-              </button>
+              </motion.button>
             ))}
           </div>
         </section>
- 
+
         {/* Quick Log Action float button */}
         <div className="pt-4">
           <button
@@ -218,13 +257,13 @@ export default function Dashboard() {
           </button>
         </div>
       </main>
- 
+
       <LogModal
         isOpen={isLogOpen}
         onClose={() => setIsLogOpen(false)}
         onSave={handleSaveLog}
       />
- 
+
       <BottomNav />
     </div>
   );

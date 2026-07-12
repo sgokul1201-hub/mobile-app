@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #fafafa;
-  --foreground: #121212;
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --card-border: rgba(0, 0, 0, 0.08);
+  --background: #e4e4e7;
+  --foreground: #27272a;
+  --card-bg: #f4f4f5;
+  --card-border: rgba(0, 0, 0, 0.1);
   --primary: #6366f1;
   --primary-hover: #4f46e5;
-  --glass-bg: rgba(255, 255, 255, 0.4);
-  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-bg: rgba(244, 244, 245, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.12);
 }
 
 .dark {

@@ -123,7 +123,7 @@ export default function Register() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="John Doe"
-                  className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600"
+                  className="w-full rounded-xl bg-card-bg border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground placeholder-zinc-400 dark:placeholder-zinc-600"
                   required
                 />
               </div>
@@ -141,7 +141,7 @@ export default function Register() {
                     name="dob"
                     value={formData.dob}
                     onChange={handleChange}
-                    className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100"
+                    className="w-full rounded-xl bg-card-bg border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground"
                     required
                   />
                 </div>
@@ -171,7 +171,7 @@ export default function Register() {
                   name="sex"
                   value={formData.sex}
                   onChange={handleChange}
-                  className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl bg-card-bg border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground"
                 >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -192,7 +192,7 @@ export default function Register() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+91 9876543210"
-                    className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600"
+                    className="w-full rounded-xl bg-card-bg border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground placeholder-zinc-400 dark:placeholder-zinc-600"
                     required
                   />
                 </div>
@@ -218,7 +218,7 @@ export default function Register() {
                     value={formData.pin}
                     onChange={handleChange}
                     placeholder="••••"
-                    className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600 tracking-widest font-mono"
+                    className="w-full rounded-xl bg-card-bg border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground placeholder-zinc-400 dark:placeholder-zinc-600 tracking-widest font-mono"
                     required
                   />
                 </div>
@@ -236,7 +236,7 @@ export default function Register() {
                   value={formData.confirmPin}
                   onChange={handleChange}
                   placeholder="••••"
-                  className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600 tracking-widest font-mono"
+                  className="w-full rounded-xl bg-card-bg border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground placeholder-zinc-400 dark:placeholder-zinc-600 tracking-widest font-mono"
                   required
                 />
               </div>

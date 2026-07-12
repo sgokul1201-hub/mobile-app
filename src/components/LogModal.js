@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, Plus, Minus, Users, Play, Heart, Calendar } from 'lucide-react';
+import { X, Plus, Minus, Users, Play } from 'lucide-react';
 
 export default function LogModal({ isOpen, onClose, onSave, initialLog }) {
   const [count, setCount] = useState(1);
@@ -59,15 +59,15 @@ export default function LogModal({ isOpen, onClose, onSave, initialLog }) {
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center bg-black/60 backdrop-blur-sm p-0 sm:p-4">
       {/* Modal Card */}
       <div 
-        className="w-full max-h-[90vh] overflow-y-auto sm:max-w-md rounded-t-2xl sm:rounded-2xl glass-panel border border-[var(--card-border)] bg-[var(--card-bg)] shadow-2xl p-6 transition-all duration-300 transform translate-y-0 pb-10 sm:pb-6"
+        className="w-full max-h-[90vh] overflow-y-auto sm:max-w-md rounded-t-2xl sm:rounded-2xl glass-panel border border-card-border bg-card-bg shadow-2xl p-6 transition-all duration-300 transform translate-y-0 pb-10 sm:pb-6"
       >
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
+          <h2 className="text-xl font-bold tracking-tight text-foreground">
             {initialLog ? 'Edit Wellness Log' : 'Add Tracking Entry'}
           </h2>
           <button 
             onClick={onClose} 
-            className="rounded-full p-1.5 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            className="rounded-full p-1.5 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/40 transition-colors"
           >
             <X className="h-5 w-5" />
           </button>
@@ -75,15 +75,15 @@ export default function LogModal({ isOpen, onClose, onSave, initialLog }) {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Frequency Counter */}
-          <div className="flex flex-col items-center justify-center py-4 bg-zinc-50 dark:bg-zinc-900/50 rounded-xl border border-[var(--card-border)]">
-            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-2">
+          <div className="flex flex-col items-center justify-center py-4 bg-background border border-card-border rounded-xl">
+            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
               Frequency Count
             </span>
             <div className="flex items-center gap-6">
               <button
                 type="button"
                 onClick={() => setCount(Math.max(1, count - 1))}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 hover:scale-105 active:scale-95 transition-all shadow-sm"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-background border border-card-border text-foreground active:scale-95 transition-all shadow-sm cursor-pointer"
               >
                 <Minus className="h-5 w-5" />
               </button>
@@ -93,7 +93,7 @@ export default function LogModal({ isOpen, onClose, onSave, initialLog }) {
               <button
                 type="button"
                 onClick={() => setCount(count + 1)}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 hover:scale-105 active:scale-95 transition-all shadow-sm"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-background border border-card-border text-foreground active:scale-95 transition-all shadow-sm cursor-pointer"
               >
                 <Plus className="h-5 w-5" />
               </button>
@@ -111,7 +111,7 @@ export default function LogModal({ isOpen, onClose, onSave, initialLog }) {
                   type="date"
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full rounded-xl bg-zinc-100 dark:bg-zinc-800 border-0 px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl bg-card-bg border border-card-border px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 text-foreground"
                   required
                 />
               </div>
@@ -124,7 +124,7 @@ export default function LogModal({ isOpen, onClose, onSave, initialLog }) {
                 type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
-                className="w-full rounded-xl bg-zinc-100 dark:bg-zinc-800 border-0 px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100"
+                className="w-full rounded-xl bg-card-bg border border-card-border px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 text-foreground"
                 required
               />
             </div>
@@ -140,10 +140,10 @@ export default function LogModal({ isOpen, onClose, onSave, initialLog }) {
               <button
                 type="button"
                 onClick={() => setPartner(!partner)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-sm font-semibold transition-all ${
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-sm font-semibold transition-all cursor-pointer ${
                   partner
                     ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
-                    : 'border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/40 text-zinc-500 dark:text-zinc-400'
+                    : 'border-card-border bg-card-bg hover:bg-zinc-200/50 dark:hover:bg-zinc-800/40 text-foreground/80'
                 }`}
               >
                 <Users className="h-4 w-4" />
@@ -154,10 +154,10 @@ export default function LogModal({ isOpen, onClose, onSave, initialLog }) {
               <button
                 type="button"
                 onClick={() => setPorn(!porn)}
-                className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-sm font-semibold transition-all ${
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl border text-sm font-semibold transition-all cursor-pointer ${
                   porn
                     ? 'border-rose-500/30 bg-rose-500/10 text-rose-600 dark:text-rose-400'
-                    : 'border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/40 text-zinc-500 dark:text-zinc-400'
+                    : 'border-card-border bg-card-bg hover:bg-zinc-200/50 dark:hover:bg-zinc-800/40 text-foreground/80'
                 }`}
               >
                 <Play className="h-4 w-4" />
@@ -176,7 +176,7 @@ export default function LogModal({ isOpen, onClose, onSave, initialLog }) {
               onChange={(e) => setNotes(e.target.value)}
               placeholder="e.g. Felt stressed after work, late night boredom..."
               rows={3}
-              className="w-full rounded-xl bg-zinc-100 dark:bg-zinc-800 border-0 px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 resize-none"
+              className="w-full rounded-xl bg-card-bg border border-card-border px-4 py-3 text-sm focus:ring-2 focus:ring-indigo-500 text-foreground placeholder-zinc-400 dark:placeholder-zinc-500 resize-none"
             />
           </div>
 
@@ -185,13 +185,13 @@ export default function LogModal({ isOpen, onClose, onSave, initialLog }) {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 rounded-xl bg-zinc-200 dark:bg-zinc-800 px-4 py-3 text-sm font-bold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors"
+              className="flex-1 rounded-xl bg-background border border-card-border px-4 py-3 text-sm font-bold text-foreground hover:bg-zinc-200/50 dark:hover:bg-zinc-800/30 transition-colors cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="flex-1 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 text-sm font-bold shadow-lg shadow-indigo-600/20 active:scale-[0.98] transition-all"
+              className="flex-1 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-3 text-sm font-bold shadow-lg shadow-indigo-600/20 active:scale-[0.98] transition-all cursor-pointer"
             >
               {initialLog ? 'Update Entry' : 'Log Entry'}
             </button>

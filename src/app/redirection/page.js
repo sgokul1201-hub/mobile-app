@@ -6,6 +6,7 @@ import {
   Dumbbell, BookOpen, Wind, Droplet, Zap, PenTool, 
   Navigation, ShieldAlert, ArrowLeft, BrainCircuit, Activity
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 
 // 9 Redirection Articles Database
@@ -14,7 +15,6 @@ const REDIRECTION_ARTICLES = {
     title: 'Strength Training & Energy Channeling',
     subtitle: 'Physical Exertion as a Neuro-Regulator',
     icon: Dumbbell,
-    color: 'from-blue-500 to-indigo-600',
     content: `When physical energy build-up occurs, the body's natural response is to seek immediate release. Strength training channels this energy constructively.
 
 ### How it Works:
@@ -31,7 +31,6 @@ const REDIRECTION_ARTICLES = {
     title: 'Cognitive Shifting via Reading',
     subtitle: 'Re-engaging the Prefrontal Cortex',
     icon: BookOpen,
-    color: 'from-violet-500 to-purple-600',
     content: `Trigger states place the brain in an impulsive, emotional loop managed by the amygdala. Reading complex technical or structural literature re-engages the logical centers of the brain.
 
 ### How it Works:
@@ -48,7 +47,6 @@ const REDIRECTION_ARTICLES = {
     title: 'Parasympathetic Breathing Focus',
     subtitle: 'Restoring Autonomic Nervous System Balance',
     icon: Wind,
-    color: 'from-cyan-500 to-blue-600',
     content: `Triggers generate a subtle "fight-or-flight" response, characterized by shallow breathing and an elevated heart rate. Conscious deep breathing is the fastest way to deactivate this physical cycle.
 
 ### How it Works:
@@ -66,7 +64,6 @@ const REDIRECTION_ARTICLES = {
     title: 'System Shock via Hydration',
     subtitle: 'Interrupting the Habit Loop with Cold Shock',
     icon: Droplet,
-    color: 'from-teal-500 to-emerald-600',
     content: `Automated habits thrive on unconscious behavior. Drinking ice-cold water introduces a sudden, mild physical sensation that breaks the trigger cycle.
 
 ### How it Works:
@@ -83,7 +80,6 @@ const REDIRECTION_ARTICLES = {
     title: 'Rapid Physical Dissipation',
     subtitle: 'Exhausting Immediate Adrenaline Surges',
     icon: Zap,
-    color: 'from-amber-500 to-orange-600',
     content: `An urge represents a surge of adrenaline seeking an outlet. By immediately directing this energy into high-intensity physical movement, you exhaust the urge.
 
 ### How it Works:
@@ -100,7 +96,6 @@ const REDIRECTION_ARTICLES = {
     title: 'Intentional Journaling & Mapping',
     subtitle: 'Moving Impulses to the Written Page',
     icon: PenTool,
-    color: 'from-fuchsia-500 to-pink-600',
     content: `Writing is a powerful self-reflective tool. Expressing your goals or emotional state in writing forces you to step outside the trigger and look at it objectively.
 
 ### How it Works:
@@ -117,8 +112,7 @@ const REDIRECTION_ARTICLES = {
   Ice: {
     title: 'Cold Shock Therapy',
     subtitle: 'Resetting the Dopaminergic Baseline',
-    icon: Droplet, // Fallback to Droplet
-    color: 'from-sky-400 to-blue-600',
+    icon: Droplet,
     content: `Cold showers are one of the most effective tools to interrupt high-intensity triggers. The sensory overload acts as a hard reboot for the nervous system.
 
 ### How it Works:
@@ -136,7 +130,6 @@ const REDIRECTION_ARTICLES = {
     title: 'Spatial Disruption & Walk',
     subtitle: 'Breaking Environmental Associations',
     icon: Navigation,
-    color: 'from-emerald-500 to-teal-600',
     content: `Triggers are heavily linked to environmental cues (like sitting at your desk, lying in bed, or looking at a screen). Leaving the room breaks these spatial cues.
 
 ### How it Works:
@@ -153,7 +146,6 @@ const REDIRECTION_ARTICLES = {
     title: 'Designing Your Environment',
     subtitle: 'Adding Digital Friction to Eliminate Temptation',
     icon: ShieldAlert,
-    color: 'from-rose-500 to-red-600',
     content: `Willpower alone is a finite resource. The most successful way to maintain wellness habits is to design an environment where temptation is physically hard to reach.
 
 ### How it Works:
@@ -182,43 +174,53 @@ function RedirectionContent() {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-12 text-foreground flex flex-col">
-      {/* Dynamic Colored Header Panel */}
-      <div className={`relative overflow-hidden bg-gradient-to-br ${article.color} text-white pt-10 pb-16 px-6 shadow-lg safe-top`}>
-        <div className="absolute inset-0 bg-grid-white/[0.05]" />
-        
-        {/* Back Button */}
-        <button 
-          onClick={handleDone}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm transition-colors border border-white/10"
-        >
-          <ArrowLeft className="h-5 w-5" />
-        </button>
+    <div className="min-h-screen bg-background pb-24 text-foreground flex flex-col">
+      <Header title="Redirection" />
 
-        <div className="mt-6 flex items-center gap-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 border border-white/10 shadow-inner">
-            <IconComponent className="h-7 w-7" />
-          </div>
+      <main className="flex-1 px-4 py-6 max-w-lg mx-auto w-full space-y-6">
+        {/* Back navigation & Title Card */}
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={handleDone}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-card-bg border border-card-border text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors shadow-sm"
+          >
+            <motion.div
+              whileTap={{ scale: 0.9 }}
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </motion.div>
+          </button>
           <div>
-            <h1 className="text-xl font-black tracking-tight leading-tight">
+            <h2 className="text-xl font-black tracking-tight text-foreground">
               {article.title}
-            </h1>
-            <p className="text-xs text-white/80 font-bold uppercase tracking-wider mt-1">
+            </h2>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400 font-semibold uppercase tracking-wider">
               {article.subtitle}
             </p>
           </div>
         </div>
 
-        {/* Absolute Background Shape */}
-        <div className="absolute -bottom-16 -right-16 h-36 w-36 rounded-full bg-white/5 blur-2xl" />
-      </div>
-
-      {/* Article Body */}
-      <main className="flex-1 px-5 -mt-6 max-w-lg mx-auto w-full">
-        <div className="glass-panel border border-card-border bg-card-bg rounded-2xl shadow-xl p-6 space-y-6">
-          <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400">
-            <BrainCircuit className="h-4.5 w-4.5" />
-            <span className="text-xs font-bold uppercase tracking-wider">Cognitive Strategy</span>
+        {/* Article Body Card */}
+        <motion.section 
+          animate={{
+            boxShadow: [
+              "0 4px 6px -1px rgba(99, 102, 241, 0.05), 0 2px 4px -1px rgba(99, 102, 241, 0.02)",
+              "0 10px 15px -3px rgba(99, 102, 241, 0.15), 0 4px 6px -2px rgba(99, 102, 241, 0.05)",
+              "0 4px 6px -1px rgba(99, 102, 241, 0.05), 0 2px 4px -1px rgba(99, 102, 241, 0.02)"
+            ]
+          }}
+          transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
+          className="rounded-2xl border border-card-border bg-card-bg p-6 space-y-5"
+        >
+          <div className="flex items-center gap-2.5 text-indigo-600 dark:text-indigo-400 font-bold text-xs uppercase tracking-wider">
+            <motion.div 
+              animate={{ scale: [1, 1.08, 1], y: [0, -2, 0], rotate: [0, 6, -6, 0], opacity: [0.8, 1, 0.8] }}
+              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20"
+            >
+              <IconComponent className="h-4.5 w-4.5" />
+            </motion.div>
+            <span>Cognitive Strategy</span>
           </div>
 
           {/* Formatted Article Content */}
@@ -269,7 +271,7 @@ function RedirectionContent() {
               <span>I completed this redirection</span>
             </button>
           </div>
-        </div>
+        </motion.section>
       </main>
     </div>
   );

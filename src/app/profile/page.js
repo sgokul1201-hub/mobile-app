@@ -97,15 +97,7 @@ export default function ProfilePage() {
   };
 
   const handleWipeData = () => {
-    const verify1 = confirm('WARNING: You are about to wipe ALL wellness tracking records, logs, and your user profile. This action CANNOT be undone. Proceed?');
-    if (verify1) {
-      const verify2 = confirm('Type YES to permanently delete your data.');
-      if (verify2) {
-        storage.clearAllData();
-        alert('All local storage cleared. Restarting profile init...');
-        router.push('/register');
-      }
-    }
+    router.push('/danger-zone');
   };
 
   return (
@@ -152,7 +144,7 @@ export default function ProfilePage() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100"
+                className="w-full rounded-xl bg-card-bg border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground"
                 required
               />
             </div>
@@ -169,7 +161,7 @@ export default function ProfilePage() {
                 name="dob"
                 value={formData.dob}
                 onChange={handleChange}
-                className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100"
+                className="w-full rounded-xl bg-card-bg border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground"
                 required
               />
             </div>
@@ -197,7 +189,7 @@ export default function ProfilePage() {
                 name="sex"
                 value={formData.sex}
                 onChange={handleChange}
-                className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100"
+                className="w-full rounded-xl bg-card-bg border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground"
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -217,7 +209,7 @@ export default function ProfilePage() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100"
+                  className="w-full rounded-xl bg-card-bg border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground"
                   required
                 />
               </div>
@@ -241,7 +233,7 @@ export default function ProfilePage() {
                 maxLength={6}
                 value={formData.pin}
                 onChange={handleChange}
-                className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100 tracking-widest font-mono"
+                className="w-full rounded-xl bg-card-bg border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-foreground tracking-widest font-mono"
                 required
               />
             </div>

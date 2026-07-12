@@ -46,7 +46,7 @@ export default function LogoutPage() {
             <span>Local Database Offline</span>
           </div>
           <p className="text-[11px] text-zinc-500 dark:text-zinc-400 leading-normal font-semibold">
-            All data remains stored within your device's secure browser sandbox. No server transfers occurred.
+            All data remains stored within your device&apos;s secure browser sandbox. No server transfers occurred.
           </p>
         </div>
 
