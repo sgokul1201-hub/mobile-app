@@ -40,6 +40,9 @@ export default function Login() {
     if (profile && pin.length === String(profile.pin).length) {
       const isValid = storage.verifyPin(pin);
       if (isValid) {
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('aura_unlocked', 'true');
+        }
         router.push('/dashboard');
       } else {
         setError('Incorrect security PIN. Please try again.');

@@ -24,6 +24,13 @@ export default function CalendarPage() {
       router.replace('/register');
       return;
     }
+
+    // Session lock check
+    if (typeof window !== 'undefined' && sessionStorage.getItem('aura_unlocked') !== 'true') {
+      router.replace('/login');
+      return;
+    }
+
     setUser(storage.getUserProfile());
     loadLogs();
   }, [router]);

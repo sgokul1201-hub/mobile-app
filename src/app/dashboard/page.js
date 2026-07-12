@@ -29,6 +29,12 @@ export default function Dashboard() {
       return;
     }
 
+    // Session lock check
+    if (typeof window !== 'undefined' && sessionStorage.getItem('aura_unlocked') !== 'true') {
+      router.replace('/login');
+      return;
+    }
+
     const profile = storage.getUserProfile();
     setUser(profile);
 
@@ -184,7 +190,7 @@ export default function Dashboard() {
             {advice.commands.map((cmd, idx) => (
               <button
                 key={idx}
-                onClick={() => handleCommandClick(cmd.text)}
+                onClick={() => router.push(`/redirection?cmd=${cmd.icon}`)}
                 className="flex items-center justify-between w-full p-4 rounded-xl border border-card-border bg-card-bg/30 hover:bg-card-bg hover:border-indigo-500/30 active:scale-[0.99] transition-all text-left"
               >
                 <div className="flex items-center gap-3">

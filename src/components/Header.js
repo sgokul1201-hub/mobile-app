@@ -39,10 +39,7 @@ export default function Header({ title }) {
   };
 
   const handleLogout = () => {
-    // Clear login state and send back to login screen
-    if (confirm('Clear local session authentication? This will lock access until PIN is entered.')) {
-      router.push('/login');
-    }
+    router.push('/logout');
   };
 
   return (

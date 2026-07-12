@@ -69,6 +69,9 @@ export default function Register() {
     try {
       const success = storage.registerUser(formData);
       if (success) {
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('aura_unlocked', 'true');
+        }
         // Automatically set dark theme on register
         storage.updateSettings({ theme: 'dark' });
         router.push('/dashboard');
