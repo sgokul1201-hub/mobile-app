@@ -81,25 +81,25 @@ export default function Register() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col justify-center bg-zinc-950 px-4 py-12 sm:px-6 lg:px-8 text-zinc-100">
+    <div className="flex min-h-screen flex-col justify-center bg-background px-4 py-12 sm:px-6 lg:px-8 text-foreground">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="flex justify-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-600/30">
             <Shield className="h-6 w-6" />
           </div>
         </div>
-        <h2 className="mt-6 text-center text-3xl font-extrabold tracking-tight text-white">
+        <h2 className="mt-6 text-center text-3xl font-extrabold tracking-tight text-foreground">
           Create Security Profile
         </h2>
-        <p className="mt-2 text-center text-sm text-zinc-400">
+        <p className="mt-2 text-center text-sm text-zinc-500 dark:text-zinc-400">
           Your data is stored 100% locally. No servers. No trackers.
         </p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="glass-panel border border-zinc-800 bg-zinc-900/60 p-8 rounded-2xl shadow-xl space-y-6">
+        <div className="glass-panel border border-card-border bg-card-bg p-8 rounded-2xl shadow-xl space-y-6">
           {error && (
-            <div className="rounded-lg bg-rose-500/10 border border-rose-500/20 p-3 text-sm font-semibold text-rose-400">
+            <div className="rounded-lg bg-rose-500/10 border border-rose-500/20 p-3 text-sm font-semibold text-rose-500 dark:text-rose-400">
               {error}
             </div>
           )}
@@ -107,7 +107,7 @@ export default function Register() {
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Name */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
+              <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                 Full Name
               </label>
               <div className="relative">
@@ -120,7 +120,7 @@ export default function Register() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="John Doe"
-                  className="w-full rounded-xl bg-zinc-900/80 border border-zinc-800 pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-100 placeholder-zinc-600"
+                  className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600"
                   required
                 />
               </div>
@@ -129,7 +129,7 @@ export default function Register() {
             {/* DOB & Age */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                   Date of Birth
                 </label>
                 <div className="relative">
@@ -138,13 +138,13 @@ export default function Register() {
                     name="dob"
                     value={formData.dob}
                     onChange={handleChange}
-                    className="w-full rounded-xl bg-zinc-900/80 border border-zinc-800 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-100"
+                    className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100"
                     required
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                   Age (Auto)
                 </label>
                 <input
@@ -153,7 +153,7 @@ export default function Register() {
                   value={formData.age}
                   readOnly
                   placeholder="--"
-                  className="w-full rounded-xl bg-zinc-900/40 border border-zinc-800/80 px-4 py-3 text-sm text-zinc-500 cursor-not-allowed"
+                  className="w-full rounded-xl bg-zinc-200/40 dark:bg-zinc-900/40 border border-card-border/80 px-4 py-3 text-sm text-zinc-500 cursor-not-allowed"
                 />
               </div>
             </div>
@@ -161,14 +161,14 @@ export default function Register() {
             {/* Sex & Phone */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                   Sex
                 </label>
                 <select
                   name="sex"
                   value={formData.sex}
                   onChange={handleChange}
-                  className="w-full rounded-xl bg-zinc-900/80 border border-zinc-800 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-100"
+                  className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100"
                 >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
@@ -176,7 +176,7 @@ export default function Register() {
                 </select>
               </div>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                   Phone Number
                 </label>
                 <div className="relative">
@@ -189,7 +189,7 @@ export default function Register() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+91 9876543210"
-                    className="w-full rounded-xl bg-zinc-900/80 border border-zinc-800 pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-100 placeholder-zinc-600"
+                    className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600"
                     required
                   />
                 </div>
@@ -199,7 +199,7 @@ export default function Register() {
             {/* Security PIN & Confirm */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                   Security PIN
                 </label>
                 <div className="relative">
@@ -215,13 +215,13 @@ export default function Register() {
                     value={formData.pin}
                     onChange={handleChange}
                     placeholder="••••"
-                    className="w-full rounded-xl bg-zinc-900/80 border border-zinc-800 pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-100 placeholder-zinc-600 tracking-widest font-mono"
+                    className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border pl-10 pr-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600 tracking-widest font-mono"
                     required
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-2">
                   Confirm PIN
                 </label>
                 <input
@@ -233,7 +233,7 @@ export default function Register() {
                   value={formData.confirmPin}
                   onChange={handleChange}
                   placeholder="••••"
-                  className="w-full rounded-xl bg-zinc-900/80 border border-zinc-800 px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-100 placeholder-zinc-600 tracking-widest font-mono"
+                  className="w-full rounded-xl bg-zinc-50 dark:bg-zinc-900/80 border border-card-border px-4 py-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-600 tracking-widest font-mono"
                   required
                 />
               </div>
@@ -248,12 +248,12 @@ export default function Register() {
                   type="checkbox"
                   checked={formData.termsAccepted}
                   onChange={handleChange}
-                  className="h-4 w-4 rounded border-zinc-800 text-indigo-600 focus:ring-indigo-500 bg-zinc-900"
+                  className="h-4 w-4 rounded border-zinc-300 dark:border-zinc-800 text-indigo-600 focus:ring-indigo-500 bg-zinc-50 dark:bg-zinc-900"
                   required
                 />
               </div>
               <div className="ml-3 text-xs">
-                <label htmlFor="termsAccepted" className="font-semibold text-zinc-400">
+                <label htmlFor="termsAccepted" className="font-semibold text-zinc-500 dark:text-zinc-400">
                   I agree that this application is offline-first. All entries are stored directly in my browser/device localStorage and I accept the terms of tracking.
                 </label>
               </div>

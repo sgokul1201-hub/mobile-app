@@ -88,53 +88,53 @@ export default function Dashboard() {
   const activeStyle = scaleColors[advice.scale] || scaleColors.LOW;
 
   return (
-    <div className="min-h-screen bg-zinc-950 pb-24 text-zinc-100 flex flex-col">
+    <div className="min-h-screen bg-background pb-24 text-foreground flex flex-col">
       <Header title="Dashboard" />
-
+ 
       <main className="flex-1 px-4 py-6 max-w-lg mx-auto w-full space-y-6">
         {/* User Greeting */}
         <div>
-          <h2 className="text-2xl font-black tracking-tight text-white">
+          <h2 className="text-2xl font-black tracking-tight text-foreground">
             Hello, {user.name.split(' ')[0]}
           </h2>
-          <p className="text-xs text-zinc-400 font-semibold tracking-wide">
+          <p className="text-xs text-zinc-500 dark:text-zinc-400 font-semibold tracking-wide">
             Your offline personal wellness profile is synchronized.
           </p>
         </div>
-
+ 
         {/* Streak and Summary metrics */}
         <div className="grid grid-cols-2 gap-4">
           {/* Clean Streak Card */}
-          <div className="relative overflow-hidden rounded-2xl glass-panel border border-zinc-800 bg-zinc-900/40 p-5 flex flex-col justify-between h-32">
+          <div className="relative overflow-hidden rounded-2xl glass-panel border border-card-border bg-card-bg p-5 flex flex-col justify-between h-32">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Clean Streak</span>
+              <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Clean Streak</span>
               <Flame className="h-5 w-5 text-indigo-500 fill-indigo-500/20" />
             </div>
             <div>
-              <div className="text-3xl font-extrabold text-white">
+              <div className="text-3xl font-extrabold text-foreground">
                 {streaks.cleanStreakDays} <span className="text-sm font-semibold text-zinc-500">Days</span>
               </div>
-              <p className="text-[10px] text-zinc-400 mt-1 font-semibold">Since last entry</p>
+              <p className="text-[10px] text-zinc-500 dark:text-zinc-400 mt-1 font-semibold">Since last entry</p>
             </div>
             {/* Absolute background accent */}
             <div className="absolute -bottom-8 -right-8 h-20 w-20 rounded-full bg-indigo-500/5 blur-xl" />
           </div>
-
+ 
           {/* Month Scale status */}
           <div className={`relative overflow-hidden rounded-2xl glass-panel border ${activeStyle.border} ${activeStyle.bg} p-5 flex flex-col justify-between h-32 shadow-lg ${activeStyle.glow}`}>
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Monthly Scale</span>
+              <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">Monthly Scale</span>
               <Zap className={`h-5 w-5 ${activeStyle.text}`} />
             </div>
             <div>
               <div className={`text-2xl font-black uppercase tracking-tight ${activeStyle.text}`}>
                 {advice.level}
               </div>
-              <p className="text-[10px] text-zinc-400 mt-1 font-semibold">{advice.totalCount} log entries (30d)</p>
+              <p className="text-[10px] text-zinc-500 dark:text-zinc-400 mt-1 font-semibold">{advice.totalCount} log entries (30d)</p>
             </div>
           </div>
         </div>
-
+ 
         {/* Command Feedback Toast */}
         {commandFeedback && (
           <div className="rounded-xl bg-indigo-600 border border-indigo-500/30 p-4 text-xs font-bold text-white flex items-center gap-2 animate-bounce">
@@ -142,56 +142,56 @@ export default function Dashboard() {
             <span>{commandFeedback}</span>
           </div>
         )}
-
+ 
         {/* Predefined Dynamic Wellness Advice Card */}
-        <section className="rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6 space-y-4">
+        <section className="rounded-2xl border border-card-border bg-card-bg p-6 space-y-4">
           <div className="flex items-center gap-2">
-            <Award className="h-5 w-5 text-indigo-400" />
-            <h3 className="font-bold text-white tracking-tight">Personalized Advice</h3>
+            <Award className="h-5 w-5 text-indigo-500 dark:text-indigo-400" />
+            <h3 className="font-bold text-foreground tracking-tight">Personalized Advice</h3>
           </div>
           
           <div className="space-y-2">
-            <h4 className="text-sm font-bold text-indigo-300">
+            <h4 className="text-sm font-bold text-indigo-600 dark:text-indigo-400">
               {advice.title}
             </h4>
-            <p className="text-xs text-zinc-400 leading-relaxed font-medium">
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed font-medium">
               {advice.scoreDescription}
             </p>
           </div>
-
+ 
           <ul className="space-y-2.5 pt-2">
             {advice.bulletAdvice.map((item, idx) => (
-              <li key={idx} className="flex items-start gap-2.5 text-xs text-zinc-300 leading-relaxed font-semibold">
+              <li key={idx} className="flex items-start gap-2.5 text-xs text-zinc-700 dark:text-zinc-300 leading-relaxed font-semibold">
                 <span className="h-1.5 w-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
                 <span>{item}</span>
               </li>
             ))}
           </ul>
         </section>
-
+ 
         {/* Predefined Action Redirect commands */}
         <section className="space-y-3">
           <div className="flex items-center justify-between">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
               Energy Redirection Commands
             </h3>
-            <span className="text-[10px] text-indigo-400 font-bold uppercase tracking-wider">
+            <span className="text-[10px] text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">
               Tap to redirect
             </span>
           </div>
-
+ 
           <div className="grid grid-cols-1 gap-2.5">
             {advice.commands.map((cmd, idx) => (
               <button
                 key={idx}
                 onClick={() => handleCommandClick(cmd.text)}
-                className="flex items-center justify-between w-full p-4 rounded-xl border border-zinc-800/80 bg-zinc-900/20 hover:bg-zinc-800/40 hover:border-zinc-700 active:scale-[0.99] transition-all text-left"
+                className="flex items-center justify-between w-full p-4 rounded-xl border border-card-border bg-card-bg/30 hover:bg-card-bg hover:border-indigo-500/30 active:scale-[0.99] transition-all text-left"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
                     {getIcon(cmd.icon)}
                   </div>
-                  <span className="text-xs font-bold text-zinc-200">
+                  <span className="text-xs font-bold text-zinc-800 dark:text-zinc-200">
                     {cmd.text}
                   </span>
                 </div>
@@ -200,7 +200,7 @@ export default function Dashboard() {
             ))}
           </div>
         </section>
-
+ 
         {/* Quick Log Action float button */}
         <div className="pt-4">
           <button
@@ -212,13 +212,13 @@ export default function Dashboard() {
           </button>
         </div>
       </main>
-
+ 
       <LogModal
         isOpen={isLogOpen}
         onClose={() => setIsLogOpen(false)}
         onSave={handleSaveLog}
       />
-
+ 
       <BottomNav />
     </div>
   );
